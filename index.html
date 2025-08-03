@@ -244,4 +244,83 @@
       { name: "Toni Kroos – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Toni_Kroos_2018.jpg" },
       { name: "Harry Kane – Bayern Munich", img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Harry_Kane_in_2023.jpg" },
       { name: "Mohamed Salah – Liverpool", img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Mohamed_Salah_2018.jpg" },
-      { name: "Vinicius Jr – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/Vinicius
+      { name: "Vinicius Jr – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/Vinicius_Jr_2020.jpg" },
+      { name: "Robert Lewandowski – Barcelona", img: "https://upload.wikimedia.org/wikipedia/commons/7/75/Robert_Lewandowski_2022.jpg" },
+      { name: "Antoine Griezmann – Atletico Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/8/87/Antoine_Griezmann_2018.jpg" },
+      { name: "Joao Felix – Barcelona", img: "https://upload.wikimedia.org/wikipedia/commons/5/58/Jo%C3%A3o_F%C3%A9lix_2021.jpg" },
+      { name: "Jude Bellingham – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/3/3f/Jude_Bellingham_2023.jpg" },
+      { name: "Pedri – Barcelona", img: "https://upload.wikimedia.org/wikipedia/commons/6/6f/Pedri_2021.jpg" },
+      { name: "Bukayo Saka – Arsenal", img: "https://upload.wikimedia.org/wikipedia/commons/d/d6/Bukayo_Saka_2021.jpg" }
+    ];
+
+    const productList = document.getElementById("product-list");
+
+    // Futbolçuları ekranda göstər
+    players.forEach(player => {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.onclick = () => openOrderForm(player.name);
+      div.innerHTML = `
+        <img src="${player.img}" alt="${player.name}">
+        <h3>${player.name}</h3>
+        <p>Price: $10</p>
+      `;
+      productList.appendChild(div);
+    });
+
+    // Qeydiyyat və welcome mesajı
+    window.onload = function () {
+      const savedName = localStorage.getItem('userName');
+      if (savedName) {
+        document.getElementById("welcome-text").textContent = `– Welcome, ${savedName}`;
+        document.getElementById("login-btn").style.display = "none";
+        document.getElementById("login-form").style.display = "none";
+      }
+    };
+
+    document.getElementById("login-btn").onclick = () => {
+      const form = document.getElementById("login-form");
+      form.style.display = form.style.display === "block" ? "none" : "block";
+    };
+
+    document.getElementById("login-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const name = document.getElementById("login-name").value.trim();
+      if (name) {
+        localStorage.setItem('userName', name);
+        location.reload();
+      }
+    });
+
+    // Order form funksionallığı
+    const orderOverlay = document.getElementById('order-form-overlay');
+    const orderForm = document.getElementById('order-form');
+    const selectedShirtText = document.getElementById('selected-shirt');
+    const closeBtn = orderForm.querySelector('.close-btn');
+
+    function openOrderForm(shirtName) {
+      selectedShirtText.textContent = `Shirt: ${shirtName}`;
+      orderOverlay.style.display = 'flex';
+    }
+
+    closeBtn.onclick = () => {
+      orderOverlay.style.display = 'none';
+      orderForm.reset();
+    };
+
+    orderOverlay.onclick = (e) => {
+      if (e.target === orderOverlay) {
+        orderOverlay.style.display = 'none';
+        orderForm.reset();
+      }
+    };
+
+    orderForm.addEventListener('submit', e => {
+      e.preventDefault();
+      alert('Thank you for your order! We will contact you soon.');
+      orderOverlay.style.display = 'none';
+      orderForm.reset();
+    });
+  </script>
+</body>
+</html>
