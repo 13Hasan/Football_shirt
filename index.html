@@ -64,9 +64,7 @@
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      cursor: pointer;
     }
     .product img {
       width: 100%;
@@ -75,27 +73,6 @@
     }
     .product h3, .product p {
       padding: 0 10px;
-    }
-    .order-form {
-      background: white;
-      max-width: 400px;
-      margin: 30px auto;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-    }
-    .order-form input, .order-form select {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
-    }
-    .order-form button {
-      background: green;
-      color: white;
-      border: none;
-      padding: 10px;
-      border-radius: 5px;
-      cursor: pointer;
     }
     .footer {
       text-align: center;
@@ -114,75 +91,75 @@
     <h1>Football Shirt</h1>
   </header>
 
-  <div class="login-button" onclick="document.getElementById('login-form').style.display='block'">➕ Oturum Aç</div>
+  <div class="login-button" onclick="document.getElementById('login-form').style.display='block'">➕ Sign In</div>
   <form id="login-form">
-    <input type="text" placeholder="Ad Soyad" required>
-    <input type="email" placeholder="Gmail" required>
-    <input type="password" placeholder="Şifrə" required>
-    <button type="submit">Giriş</button>
+    <input type="text" placeholder="Full Name" required>
+    <input type="email" placeholder="Email" required>
+    <input type="password" placeholder="Password" required>
+    <button type="submit">Login</button>
   </form>
 
   <div class="products">
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Ronaldo – Al Nassr')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" alt="Ronaldo Al Nassr">
       <h3>Ronaldo – Al Nassr</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Messi – Inter Miami')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Lionel_Messi_WC2022.jpg" alt="Messi Inter Miami">
       <h3>Messi – Inter Miami</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Mbappe – PSG')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Kylian_Mbappe_2022.jpg" alt="Mbappe PSG">
       <h3>Kylian Mbappe – PSG</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Haaland – Man City')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Erling_Haaland_2023.jpg" alt="Haaland Manchester City">
       <h3>Erling Haaland – Man City</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Van Dijk – Liverpool')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Virgil_van_Dijk_Liverpool_2023.jpg" alt="Van Dijk Liverpool">
       <h3>Van Dijk – Liverpool</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
-    <div class="product">
+    <div class="product" onclick="showOrderForm('Neymar – Al Hilal')">
       <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Neymar_Jr_2022.jpg" alt="Neymar Al Hilal">
       <h3>Neymar – Al Hilal</h3>
-      <p>Qiymət: $10</p>
+      <p>Price: $10</p>
     </div>
   </div>
 
-  <form class="order-form">
-    <h2>Sifariş Formu</h2>
-    <input type="text" name="name" placeholder="Ad Soyad" required>
-    <input type="text" name="address" placeholder="Yaşadığı Yer" required>
-    <input type="text" name="postcode" placeholder="Poçt Kodu">
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="tel" name="phone" placeholder="Telefon nömrəsi (istəyə bağlı)">
-    <select name="shirt">
-      <option value="ronaldo">Ronaldo – Al Nassr</option>
-      <option value="messi">Messi – Inter Miami</option>
-      <option value="mbappe">Mbappe – PSG</option>
-      <option value="haaland">Haaland – Man City</option>
-      <option value="vandijk">Van Dijk – Liverpool</option>
-      <option value="neymar">Neymar – Al Hilal</option>
-    </select>
-    <select name="size">
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="XL">XL</option>
-    </select>
-    <button type="submit">Sifariş Ver</button>
-  </form>
-
   <div class="footer">
-    <p><a href="#" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma olmur. Əgər sifarişiniz gəlməzsə, müraciət edin. Ən qısa zamanda əlaqə saxlanacaq.')">Gizlilik Sözləşməsi</a></p>
-    <p>Əlaqə: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a></p>
+    <p><a href="#" onclick="alert('This site is for football shirts only. No fraud. If your order does not arrive, please contact us and we will respond as soon as possible.')">Privacy Policy</a></p>
+    <p>Contact: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a></p>
   </div>
 
+  <script>
+    function showOrderForm(shirtName) {
+      const form = document.createElement('form');
+      form.className = 'order-form';
+      form.innerHTML = `
+        <h2>Order Form</h2>
+        <input type="text" name="name" placeholder="Full Name" required>
+        <input type="text" name="address" placeholder="Address" required>
+        <input type="text" name="postcode" placeholder="Postal Code">
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Phone Number (optional)">
+        <p>Shirt: <strong>${shirtName}</strong></p>
+        <select name="size">
+          <option value="S">S</option>
+          <option value="M">M</option>
+          <option value="L">L</option>
+          <option value="XL">XL</option>
+        </select>
+        <button type="submit">Order Now</button>
+      `;
+      document.body.appendChild(form);
+      form.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
 </body>
 </html>
