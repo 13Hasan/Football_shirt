@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Football Shirt Store</title>
   <style>
     body {
@@ -11,11 +11,13 @@
       background-size: cover;
       margin: 0;
       padding: 0;
+      background-color: #d0e8d0; /* light green overlay */
+      background-blend-mode: multiply;
     }
     header {
       display: flex;
       align-items: center;
-      background-color: rgba(0, 128, 0, 0.8);
+      background-color: rgba(0, 128, 0, 0.85);
       padding: 10px 20px;
       border-bottom: 4px solid darkgreen;
     }
@@ -36,12 +38,13 @@
       margin: 20px auto;
       cursor: pointer;
       text-align: center;
+      max-width: 150px;
     }
     #login-form {
       display: none;
       background: white;
       max-width: 400px;
-      margin: 0 auto;
+      margin: 10px auto 30px;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -56,28 +59,75 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
+      gap: 20px;
+      padding-bottom: 50px;
     }
     .product {
       background: white;
       width: 250px;
-      margin: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       overflow: hidden;
       cursor: pointer;
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .product:hover {
+      transform: scale(1.05);
     }
     .product img {
       width: 100%;
       height: 300px;
       object-fit: cover;
+      background: #eee;
     }
     .product h3, .product p {
-      padding: 0 10px;
+      padding: 10px;
+      margin: 0;
+    }
+    .order-form {
+      display: none;
+      background: white;
+      max-width: 400px;
+      margin: 20px auto 40px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+      position: relative;
+    }
+    .order-form input, .order-form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    .order-form button {
+      background: green;
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .order-form .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 22px;
+      font-weight: bold;
+      color: #666;
+      cursor: pointer;
     }
     .footer {
       text-align: center;
       margin-top: 40px;
       color: white;
+      padding-bottom: 20px;
     }
     .footer a {
       color: #00ffff;
@@ -87,79 +137,22 @@
 </head>
 <body>
   <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Football">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Football" />
     <h1>Football Shirt</h1>
   </header>
 
-  <div class="login-button" onclick="document.getElementById('login-form').style.display='block'">➕ Sign In</div>
+  <div class="login-button" onclick="toggleLoginForm()">➕ Sign In</div>
   <form id="login-form">
-    <input type="text" placeholder="Full Name" required>
-    <input type="email" placeholder="Email" required>
-    <input type="password" placeholder="Password" required>
+    <input type="text" placeholder="Full Name" required />
+    <input type="email" placeholder="Email" required />
+    <input type="password" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
 
   <div class="products">
-    <div class="product" onclick="showOrderForm('Ronaldo – Al Nassr')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" alt="Ronaldo Al Nassr">
-      <h3>Ronaldo – Al Nassr</h3>
+    <div class="product" onclick="showOrderForm('Cristiano Ronaldo – Al Nassr')">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" alt="Ronaldo Al Nassr" />
+      <h3>Cristiano Ronaldo – Al Nassr</h3>
       <p>Price: $10</p>
     </div>
-    <div class="product" onclick="showOrderForm('Messi – Inter Miami')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Lionel_Messi_WC2022.jpg" alt="Messi Inter Miami">
-      <h3>Messi – Inter Miami</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Mbappe – PSG')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Kylian_Mbappe_2022.jpg" alt="Mbappe PSG">
-      <h3>Kylian Mbappe – PSG</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Haaland – Man City')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Erling_Haaland_2023.jpg" alt="Haaland Manchester City">
-      <h3>Erling Haaland – Man City</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Van Dijk – Liverpool')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Virgil_van_Dijk_Liverpool_2023.jpg" alt="Van Dijk Liverpool">
-      <h3>Van Dijk – Liverpool</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Neymar – Al Hilal')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Neymar_Jr_2022.jpg" alt="Neymar Al Hilal">
-      <h3>Neymar – Al Hilal</h3>
-      <p>Price: $10</p>
-    </div>
-  </div>
-
-  <div class="footer">
-    <p><a href="#" onclick="alert('This site is for football shirts only. No fraud. If your order does not arrive, please contact us and we will respond as soon as possible.')">Privacy Policy</a></p>
-    <p>Contact: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a></p>
-  </div>
-
-  <script>
-    function showOrderForm(shirtName) {
-      const form = document.createElement('form');
-      form.className = 'order-form';
-      form.innerHTML = `
-        <h2>Order Form</h2>
-        <input type="text" name="name" placeholder="Full Name" required>
-        <input type="text" name="address" placeholder="Address" required>
-        <input type="text" name="postcode" placeholder="Postal Code">
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="tel" name="phone" placeholder="Phone Number (optional)">
-        <p>Shirt: <strong>${shirtName}</strong></p>
-        <select name="size">
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-        <button type="submit">Order Now</button>
-      `;
-      document.body.appendChild(form);
-      form.scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
-</body>
-</html>
+    <div class="prod
