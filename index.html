@@ -1,54 +1,56 @@
-<!-- FULL HTML PAGE UPDATED WITH 100 FOOTBALLERS -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Football Shirts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Football Shirt Store</title>
   <style>
     body {
       font-family: Arial, sans-serif;
-      background-image: url('https://cdn.pixabay.com/photo/2018/05/01/18/42/grass-3364006_1280.jpg');
+      background: url('https://upload.wikimedia.org/wikipedia/commons/e/e3/Grass_texture.jpg') no-repeat center center fixed;
       background-size: cover;
       margin: 0;
       padding: 0;
     }
     header {
-      background: rgba(0,128,0,0.8);
-      color: white;
-      padding: 15px;
       display: flex;
       align-items: center;
-      border-bottom: 3px solid green;
+      background-color: rgba(0, 128, 0, 0.8);
+      padding: 10px 20px;
+      border-bottom: 4px solid darkgreen;
     }
     header img {
-      width: 40px;
       height: 40px;
       margin-right: 10px;
     }
     header h1 {
+      color: white;
       margin: 0;
     }
-    .login {
-      margin: 20px;
-      text-align: left;
-    }
-    .login button {
-      background: #28a745;
-      color: white;
+    .login-button {
+      display: block;
+      background: white;
+      border: 2px solid green;
       padding: 10px 20px;
-      border: none;
       border-radius: 5px;
+      margin: 20px auto;
       cursor: pointer;
+      text-align: center;
     }
-    .login-form {
+    #login-form {
       display: none;
       background: white;
-      padding: 20px;
       max-width: 400px;
-      margin: 20px;
+      margin: 0 auto;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+    #login-form input {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
     }
     .products {
       display: flex;
@@ -57,35 +59,37 @@
     }
     .product {
       background: white;
-      margin: 10px;
-      padding: 10px;
+      width: 250px;
+      margin: 20px;
       border-radius: 10px;
-      width: 200px;
-      text-align: center;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .product img {
       width: 100%;
-      height: auto;
-      border-radius: 10px;
+      height: 300px;
+      object-fit: cover;
+    }
+    .product h3, .product p {
+      padding: 0 10px;
     }
     .order-form {
       background: white;
+      max-width: 400px;
+      margin: 30px auto;
       padding: 20px;
-      margin: 20px;
       border-radius: 10px;
-      max-width: 500px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      box-shadow: 0 2px 6px rgba(0,0,0,0.15);
     }
-    input, select, textarea {
+    .order-form input, .order-form select {
       width: 100%;
       padding: 10px;
-      margin-top: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px;
+      margin-bottom: 10px;
     }
-    button {
-      margin-top: 15px;
+    .order-form button {
       background: green;
       color: white;
       border: none;
@@ -93,114 +97,78 @@
       border-radius: 5px;
       cursor: pointer;
     }
-    .privacy {
+    .footer {
       text-align: center;
-      margin-top: 20px;
-      color: blue;
-      cursor: pointer;
+      margin-top: 40px;
+      color: white;
     }
-    .contact {
-      text-align: center;
-      margin: 20px;
-      font-size: 16px;
+    .footer a {
+      color: #00ffff;
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Football">
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Football">
     <h1>Football Shirt</h1>
   </header>
 
-  <div class="login">
-    <button onclick="document.querySelector('.login-form').style.display='block'">➕ Oturum Aç</button>
-    <div class="login-form">
-      <input type="text" placeholder="Ad Soyad və ya Gmail">
-      <input type="password" placeholder="Şifrə">
-      <button>Qeydiyyat</button>
-    </div>
-  </div>
+  <div class="login-button" onclick="document.getElementById('login-form').style.display='block'">➕ Oturum Aç</div>
+  <form id="login-form">
+    <input type="text" placeholder="Ad Soyad" required>
+    <input type="email" placeholder="Gmail" required>
+    <input type="password" placeholder="Şifrə" required>
+    <button type="submit">Giriş</button>
+  </form>
 
   <div class="products">
-    <!-- 100 futbolçu forması burada olacaq -->
-    <!-- İlk 10 futbolçunun nümunəvi formaları əlavə olunur -->
     <div class="product">
-      <img src="https://i.imgur.com/3Tc7v5r.jpg" alt="Cristiano Ronaldo - Al Nassr">
-      <h4>Cristiano Ronaldo - Al Nassr</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" alt="Ronaldo Al Nassr">
+      <h3>Ronaldo – Al Nassr</h3>
+      <p>Qiymət: $10</p>
     </div>
     <div class="product">
-      <img src="https://i.imgur.com/l8Hr7Fb.jpg" alt="Lionel Messi - Inter Miami">
-      <h4>Lionel Messi - Inter Miami</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Lionel_Messi_WC2022.jpg" alt="Messi Inter Miami">
+      <h3>Messi – Inter Miami</h3>
+      <p>Qiymət: $10</p>
     </div>
     <div class="product">
-      <img src="https://i.imgur.com/6Q1OGPY.jpg" alt="Erling Haaland - Manchester City">
-      <h4>Erling Haaland - Manchester City</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Kylian_Mbappe_2022.jpg" alt="Mbappe PSG">
+      <h3>Kylian Mbappe – PSG</h3>
+      <p>Qiymət: $10</p>
     </div>
     <div class="product">
-      <img src="https://i.imgur.com/H7o2fq2.jpg" alt="Kevin De Bruyne - Manchester City">
-      <h4>Kevin De Bruyne - Manchester City</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Erling_Haaland_2023.jpg" alt="Haaland Manchester City">
+      <h3>Erling Haaland – Man City</h3>
+      <p>Qiymət: $10</p>
     </div>
     <div class="product">
-      <img src="https://i.imgur.com/Eq7AxhW.jpg" alt="Mohamed Salah - Liverpool">
-      <h4>Mohamed Salah - Liverpool</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Virgil_van_Dijk_Liverpool_2023.jpg" alt="Van Dijk Liverpool">
+      <h3>Van Dijk – Liverpool</h3>
+      <p>Qiymət: $10</p>
     </div>
     <div class="product">
-      <img src="https://i.imgur.com/wfBq0Bn.jpg" alt="Kylian Mbappé - PSG">
-      <h4>Kylian Mbappé - PSG</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
+      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Neymar_Jr_2022.jpg" alt="Neymar Al Hilal">
+      <h3>Neymar – Al Hilal</h3>
+      <p>Qiymət: $10</p>
     </div>
-    <div class="product">
-      <img src="https://i.imgur.com/xwqxNDf.jpg" alt="Neymar Jr - Al Hilal">
-      <h4>Neymar Jr - Al Hilal</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/QEsUZ5a.jpg" alt="Virgil van Dijk - Liverpool">
-      <h4>Virgil van Dijk - Liverpool</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/cmbZMbS.jpg" alt="Luka Modrić - Real Madrid">
-      <h4>Luka Modrić - Real Madrid</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
-    </div>
-    <div class="product">
-      <img src="https://i.imgur.com/KJqF7GA.jpg" alt="Robert Lewandowski - Barcelona">
-      <h4>Robert Lewandowski - Barcelona</h4>
-      <p>Price: $10</p>
-      <button>Sifariş Et</button>
-    </div>
-    <!-- Daha 90 futbolçu əlavə edilə bilər -->
   </div>
 
   <form class="order-form">
     <h2>Sifariş Formu</h2>
     <input type="text" name="name" placeholder="Ad Soyad" required>
+    <input type="text" name="address" placeholder="Yaşadığı Yer" required>
+    <input type="text" name="postcode" placeholder="Poçt Kodu">
     <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="phone" placeholder="Telefon nömrəsi (istəyə bağlı)">
-    <input type="text" name="address" placeholder="Yaşadığı ünvan">
-    <input type="text" name="postcode" placeholder="Poçt indeksi">
+    <input type="tel" name="phone" placeholder="Telefon nömrəsi (istəyə bağlı)">
     <select name="shirt">
-      <option value="ronaldo">Cristiano Ronaldo - Al Nassr</option>
-      <option value="messi">Lionel Messi - Inter Miami</option>
-      <option value="haaland">Erling Haaland - Manchester City</option>
-      <option value="salah">Mohamed Salah - Liverpool</option>
-      <option value="neymar">Neymar Jr - Al Hilal</option>
-      <option value="mbappe">Kylian Mbappé - PSG</option>
+      <option value="ronaldo">Ronaldo – Al Nassr</option>
+      <option value="messi">Messi – Inter Miami</option>
+      <option value="mbappe">Mbappe – PSG</option>
+      <option value="haaland">Haaland – Man City</option>
+      <option value="vandijk">Van Dijk – Liverpool</option>
+      <option value="neymar">Neymar – Al Hilal</option>
     </select>
     <select name="size">
       <option value="S">S</option>
@@ -208,16 +176,13 @@
       <option value="L">L</option>
       <option value="XL">XL</option>
     </select>
-    <textarea name="notes" placeholder="Əlavə qeydlər"></textarea>
-    <button type="submit">Sifarişi göndər</button>
+    <button type="submit">Sifariş Ver</button>
   </form>
 
-  <div class="privacy" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma yoxdur. Əgər sifarişiniz gəlməsə, müraciət edin – ən qısa zamanda əlaqə saxlanılacaq.')">
-    Gizlilik Sözləşməsi
+  <div class="footer">
+    <p><a href="#" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma olmur. Əgər sifarişiniz gəlməzsə, müraciət edin. Ən qısa zamanda əlaqə saxlanacaq.')">Gizlilik Sözləşməsi</a></p>
+    <p>Əlaqə: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a></p>
   </div>
 
-  <div class="contact">
-    Əlaqə: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a>
-  </div>
 </body>
 </html>
