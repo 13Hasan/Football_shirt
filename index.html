@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Football Shirt Store</title>
   <style>
     body {
@@ -11,8 +11,7 @@
       background-size: cover;
       margin: 0;
       padding: 0;
-      background-color: #d0e8d0; /* light green overlay */
-      background-blend-mode: multiply;
+      color: #333;
     }
     header {
       display: flex;
@@ -28,6 +27,14 @@
     header h1 {
       color: white;
       margin: 0;
+      display: flex;
+      align-items: center;
+      font-size: 24px;
+    }
+    .welcome {
+      font-size: 16px;
+      margin-left: 10px;
+      color: white;
     }
     .login-button {
       display: block;
@@ -38,13 +45,15 @@
       margin: 20px auto;
       cursor: pointer;
       text-align: center;
-      max-width: 150px;
+      width: 120px;
+      font-weight: bold;
+      user-select: none;
     }
     #login-form {
       display: none;
       background: white;
       max-width: 400px;
-      margin: 10px auto 30px;
+      margin: 0 auto 30px;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
@@ -54,65 +63,112 @@
       width: 100%;
       margin-bottom: 10px;
       padding: 10px;
+      font-size: 16px;
+    }
+    #login-form button {
+      background: green;
+      color: white;
+      padding: 10px;
+      width: 100%;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    #login-form button:hover {
+      background: darkgreen;
     }
     .products {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 20px;
-      padding-bottom: 50px;
+      padding-bottom: 40px;
     }
     .product {
       background: white;
-      width: 250px;
+      width: 280px;
+      margin: 10px;
       border-radius: 10px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.15);
       overflow: hidden;
       cursor: pointer;
       transition: transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
     .product:hover {
       transform: scale(1.05);
     }
     .product img {
       width: 100%;
-      height: 300px;
+      height: 320px;
       object-fit: cover;
-      background: #eee;
     }
     .product h3, .product p {
       padding: 10px;
       margin: 0;
     }
-    .order-form {
-      display: none;
-      background: white;
-      max-width: 400px;
-      margin: 20px auto 40px;
-      padding: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-      position: relative;
+    .footer {
+      text-align: center;
+      margin: 40px 0 20px;
+      color: white;
+      font-size: 14px;
     }
-    .order-form input, .order-form select {
+    .footer a {
+      color: #00ffff;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    /* Order form styles */
+    .order-form-overlay {
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(0, 0, 0, 0.7);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+    .order-form {
+      background: white;
+      max-width: 420px;
+      width: 90%;
+      padding: 25px 30px;
+      border-radius: 12px;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.3);
+      position: relative;
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .order-form h2 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      text-align: center;
+      color: green;
+    }
+    .order-form input, 
+    .order-form select, 
+    .order-form textarea {
       width: 100%;
-      padding: 10px;
-      margin-bottom: 10px;
+      padding: 12px;
+      margin-bottom: 15px;
       border: 1px solid #ccc;
-      border-radius: 5px;
-      box-sizing: border-box;
+      border-radius: 6px;
+      font-size: 16px;
+      resize: vertical;
     }
     .order-form button {
       background: green;
       color: white;
       border: none;
       padding: 12px;
-      border-radius: 5px;
+      font-size: 18px;
       cursor: pointer;
-      font-size: 16px;
+      width: 100%;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+    .order-form button:hover {
+      background: darkgreen;
     }
     .order-form .close-btn {
       position: absolute;
@@ -120,184 +176,72 @@
       right: 15px;
       font-size: 22px;
       font-weight: bold;
-      color: #666;
+      color: #999;
       cursor: pointer;
     }
-    .footer {
-      text-align: center;
-      margin-top: 40px;
-      color: white;
-      padding-bottom: 20px;
-    }
-    .footer a {
-      color: #00ffff;
-      text-decoration: underline;
+    .order-form .close-btn:hover {
+      color: black;
     }
   </style>
 </head>
 <body>
   <header>
-    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Football" />
-    <h1>Football Shirt</h1>
+    <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Football">
+    <h1>Football Shirt <span class="welcome" id="welcome-text"></span></h1>
   </header>
 
-  <div class="login-button" onclick="toggleLoginForm()">➕ Sign In</div>
+  <div class="login-button" id="login-btn">➕ Sign In</div>
+
   <form id="login-form">
-    <input type="text" placeholder="Full Name" required />
-    <input type="email" placeholder="Email" required />
-    <input type="password" placeholder="Password" required />
+    <input type="text" id="login-name" placeholder="Full Name" required />
+    <input type="email" id="login-email" placeholder="Email" required />
+    <input type="password" id="login-password" placeholder="Password" required />
     <button type="submit">Login</button>
   </form>
 
-  <div class="products">
-    <div class="product" onclick="showOrderForm('Cristiano Ronaldo – Al Nassr')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" alt="Ronaldo Al Nassr" />
-      <h3>Cristiano Ronaldo – Al Nassr</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Lionel Messi – Inter Miami')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/66/Lionel_Messi_WC2022.jpg" alt="Messi Inter Miami" />
-      <h3>Lionel Messi – Inter Miami</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Kylian Mbappe – PSG')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/1e/Kylian_Mbappe_2022.jpg" alt="Mbappe PSG" />
-      <h3>Kylian Mbappe – PSG</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Erling Haaland – Man City')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Erling_Haaland_2023.jpg" alt="Haaland Man City" />
-      <h3>Erling Haaland – Man City</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Virgil van Dijk – Liverpool')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/ed/Virgil_van_Dijk_Liverpool_2023.jpg" alt="Van Dijk Liverpool" />
-      <h3>Virgil van Dijk – Liverpool</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Neymar Jr – Al Hilal')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f3/Neymar_Jr_2022.jpg" alt="Neymar Al Hilal" />
-      <h3>Neymar Jr – Al Hilal</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Mohamed Salah – Liverpool')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Mohamed_Salah_2022.jpg" alt="Salah Liverpool" />
-      <h3>Mohamed Salah – Liverpool</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Kevin De Bruyne – Man City')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/1/16/Kevin_De_Bruyne_2022.jpg" alt="De Bruyne Man City" />
-      <h3>Kevin De Bruyne – Man City</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Robert Lewandowski – Barcelona')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/02/Robert_Lewandowski_2023.jpg" alt="Lewandowski Barcelona" />
-      <h3>Robert Lewandowski – Barcelona</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Luka Modrić – Real Madrid')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Luka_Modrić_2021.jpg" alt="Modrić Real Madrid" />
-      <h3>Luka Modrić – Real Madrid</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Jude Bellingham – Real Madrid')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/Jude_Bellingham_2023.jpg" alt="Bellingham Real Madrid" />
-      <h3>Jude Bellingham – Real Madrid</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Harry Kane – Bayern Munich')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7d/Harry_Kane_2022.jpg" alt="Kane Bayern Munich" />
-      <h3>Harry Kane – Bayern Munich</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Vinícius Júnior – Real Madrid')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/3/38/Vin%C3%ADcius_Jr._2023.jpg" alt="Vinicius Real Madrid" />
-      <h3>Vinícius Júnior – Real Madrid</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Pedri – Barcelona')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/Pedri_2022.jpg" alt="Pedri Barcelona" />
-      <h3>Pedri – Barcelona</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Son Heung-min – Tottenham')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Son_Heung-min_2022.jpg" alt="Son Tottenham" />
-      <h3>Son Heung-min – Tottenham</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Bernardo Silva – Man City')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8d/Bernardo_Silva_2022.jpg" alt="Bernardo Silva Man City" />
-      <h3>Bernardo Silva – Man City</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Antoine Griezmann – Atletico Madrid')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/09/Antoine_Griezmann_2022.jpg" alt="Griezmann Atletico Madrid" />
-      <h3>Antoine Griezmann – Atletico Madrid</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Bukayo Saka – Arsenal')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/f/f8/Bukayo_Saka_2022.jpg" alt="Saka Arsenal" />
-      <h3>Bukayo Saka – Arsenal</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Martin Ødegaard – Arsenal')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/7/74/Martin_%C3%98degaard_2022.jpg" alt="Ødegaard Arsenal" />
-      <h3>Martin Ødegaard – Arsenal</h3>
-      <p>Price: $10</p>
-    </div>
-    <div class="product" onclick="showOrderForm('Jamal Musiala – Bayern Munich')">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Jamal_Musiala_2022.jpg" alt="Musiala Bayern Munich" />
-      <h3>Jamal Musiala – Bayern Munich</h3>
-      <p>Price: $10</p>
-    </div>
-  </div>
+  <div class="products" id="product-list"></div>
 
   <div class="footer">
     <p><a href="#" onclick="alert('This site is for football shirts only. No fraud. If your order does not arrive, please contact us and we will respond as soon as possible.')">Privacy Policy</a></p>
     <p>Contact: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a></p>
   </div>
 
+  <!-- Order Form Overlay -->
+  <div id="order-form-overlay" class="order-form-overlay" style="display:none;">
+    <form id="order-form" class="order-form">
+      <div class="close-btn" title="Close">&times;</div>
+      <h2>Order Form</h2>
+      <input type="text" name="name" placeholder="Full Name" required />
+      <input type="text" name="address" placeholder="Address" required />
+      <input type="text" name="postcode" placeholder="Postal Code" />
+      <input type="email" name="email" placeholder="Email" required />
+      <input type="tel" name="phone" placeholder="Phone Number (optional)" />
+      <p id="selected-shirt" style="font-weight:bold; margin-bottom:15px;"></p>
+      <select name="size" required>
+        <option value="" disabled selected>Select Size</option>
+        <option value="S">S</option>
+        <option value="M">M</option>
+        <option value="L">L</option>
+        <option value="XL">XL</option>
+      </select>
+      <button type="submit">Order Now</button>
+    </form>
+  </div>
+
   <script>
-    function toggleLoginForm() {
-      const form = document.getElementById('login-form');
-      if (form.style.display === 'block') {
-        form.style.display = 'none';
-      } else {
-        form.style.display = 'block';
-        form.scrollIntoView({ behavior: 'smooth' });
-      }
-    }
-
-    function showOrderForm(shirtName) {
-      // Remove existing form if any
-      const existingForm = document.querySelector('.order-form');
-      if (existingForm) {
-        existingForm.remove();
-      }
-
-      const form = document.createElement('form');
-      form.className = 'order-form';
-      form.innerHTML = `
-        <span class="close-btn" onclick="this.parentElement.remove()">&times;</span>
-        <h2>Order Form</h2>
-        <input type="text" name="name" placeholder="Full Name" required />
-        <input type="text" name="address" placeholder="Address" required />
-        <input type="text" name="postcode" placeholder="Postal Code" />
-        <input type="email" name="email" placeholder="Email" required />
-        <input type="tel" name="phone" placeholder="Phone Number (optional)" />
-        <p>Shirt: <strong>${shirtName}</strong></p>
-        <select name="size" required>
-          <option value="" disabled selected>Select Size</option>
-          <option value="S">S</option>
-          <option value="M">M</option>
-          <option value="L">L</option>
-          <option value="XL">XL</option>
-        </select>
-        <button type="submit">Order Now</button>
-      `;
-      document.body.appendChild(form);
-      form.scrollIntoView({ behavior: 'smooth' });
-    }
-  </script>
-</body>
-</html>
+    // Futbolçu məlumatları
+    const players = [
+      { name: "Cristiano Ronaldo – Al Nassr", img: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Cristiano_Ronaldo_2023.jpg" },
+      { name: "Lionel Messi – Inter Miami", img: "https://upload.wikimedia.org/wikipedia/commons/6/66/Lionel_Messi_WC2022.jpg" },
+      { name: "Kylian Mbappe – PSG", img: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Kylian_Mbappe_2022.jpg" },
+      { name: "Erling Haaland – Man City", img: "https://upload.wikimedia.org/wikipedia/commons/b/b0/Erling_Haaland_2023.jpg" },
+      { name: "Virgil van Dijk – Liverpool", img: "https://upload.wikimedia.org/wikipedia/commons/e/ed/Virgil_van_Dijk_Liverpool_2023.jpg" },
+      { name: "Neymar – Al Hilal", img: "https://upload.wikimedia.org/wikipedia/commons/f/f3/Neymar_Jr_2022.jpg" },
+      { name: "Kevin De Bruyne – Man City", img: "https://upload.wikimedia.org/wikipedia/commons/6/64/Kevin_De_Bruyne_2021.jpg" },
+      { name: "Karim Benzema – Al-Ittihad", img: "https://upload.wikimedia.org/wikipedia/commons/f/f0/Karim_Benzema_2022.jpg" },
+      { name: "Luka Modric – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/e/e3/Luka_Modric_2018.jpg" },
+      { name: "Sadio Mane – Al Nassr", img: "https://upload.wikimedia.org/wikipedia/commons/7/74/Sadio_Man%C3%A9_2018.jpg" },
+      { name: "Toni Kroos – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Toni_Kroos_2018.jpg" },
+      { name: "Harry Kane – Bayern Munich", img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Harry_Kane_in_2023.jpg" },
+      { name: "Mohamed Salah – Liverpool", img: "https://upload.wikimedia.org/wikipedia/commons/9/92/Mohamed_Salah_2018.jpg" },
+      { name: "Vinicius Jr – Real Madrid", img: "https://upload.wikimedia.org/wikipedia/commons/d/db/Vinicius
