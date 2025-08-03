@@ -156,7 +156,7 @@
       font-size: 16px;
       resize: vertical;
     }
-    .order-form button {
+    .order-form button, .paypal-button {
       background: green;
       color: white;
       border: none;
@@ -166,8 +166,9 @@
       width: 100%;
       border-radius: 6px;
       font-weight: bold;
+      margin-top: 10px;
     }
-    .order-form button:hover {
+    .order-form button:hover, .paypal-button:hover {
       background: darkgreen;
     }
     .order-form .close-btn {
@@ -208,7 +209,7 @@
 
   <!-- Order Form Overlay -->
   <div id="order-form-overlay" class="order-form-overlay" style="display:none;">
-    <form id="order-form" class="order-form">
+    <form id="order-form" class="order-form" target="_blank" method="POST" action="https://www.paypal.com/cgi-bin/webscr" onsubmit="return validateOrderForm()">
       <div class="close-btn" title="Close">&times;</div>
       <h2>Order Form</h2>
       <input type="text" name="name" placeholder="Full Name" required />
@@ -224,7 +225,15 @@
         <option value="L">L</option>
         <option value="XL">XL</option>
       </select>
-      <button type="submit">Order Now</button>
+
+      <!-- PayPal required hidden fields -->
+      <input type="hidden" name="cmd" value="_xclick" />
+      <input type="hidden" name="business" value="your-paypal-email@example.com" />
+      <input type="hidden" name="item_name" id="paypal-item-name" value="" />
+      <input type="hidden" name="amount" value="10.00" />
+      <input type="hidden" name="currency_code" value="USD" />
+
+      <button type="submit" class="paypal-button">Pay with PayPal ($10)</button>
     </form>
   </div>
 
@@ -296,10 +305,12 @@
     const orderOverlay = document.getElementById('order-form-overlay');
     const orderForm = document.getElementById('order-form');
     const selectedShirtText = document.getElementById('selected-shirt');
+    const paypalItemName = document.getElementById('paypal-item-name');
     const closeBtn = orderForm.querySelector('.close-btn');
 
     function openOrderForm(shirtName) {
       selectedShirtText.textContent = `Shirt: ${shirtName}`;
+      paypalItemName.value = shirtName;
       orderOverlay.style.display = 'flex';
     }
 
@@ -316,11 +327,15 @@
     };
 
     orderForm.addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Thank you for your order! We will contact you soon.');
-      orderOverlay.style.display = 'none';
-      orderForm.reset();
+      // Simple validation done by required attributes, but you can add more here if needed
+      alert('Thank you for your order! You will be redirected to PayPal to complete the payment.');
+      // After this, form will submit to PayPal
     });
+
+    function validateOrderForm() {
+      // Additional validation if needed, currently just returns true
+      return true;
+    }
   </script>
 </body>
 </html>
