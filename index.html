@@ -1,69 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Football Shirts</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Football Shirt</title>
   <style>
-    body { font-family: Arial; background: #f2f2f2; padding: 20px; }
-    h1 { text-align: center; }
-    .product { background: white; padding: 15px; margin: 15px auto; max-width: 400px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    img { width: 100%; border-radius: 10px; }
-    form { background: white; padding: 20px; max-width: 400px; margin: 30px auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
-    input, select, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
-    button { background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
-    button:hover { background: #0056b3; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #d1f5c4;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 10px 20px;
+      background: #7ed957;
+      border-bottom: 2px solid #55b84e;
+      border-radius: 0 0 20px 20px;
+      width: fit-content;
+    }
+    .header img {
+      width: 40px;
+      margin-right: 10px;
+    }
+    .login-box {
+      margin: 20px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 400px;
+    }
+    .login-box input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .privacy {
+      color: blue;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .info-box {
+      background: #e0ffe0;
+      padding: 15px;
+      border-left: 4px solid green;
+      margin: 20px;
+      border-radius: 8px;
+    }
+    .contact {
+      margin: 20px;
+      font-size: 16px;
+    }
+    .contact a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 15px;
+      padding: 20px;
+    }
+    .product {
+      background: white;
+      border-radius: 10px;
+      padding: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .product img {
+      width: 100%;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+    }
+    form input, form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      padding: 10px 20px;
+      background: green;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
 
-<h1>Football Shirts Store</h1>
+  <div class="header">
+    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Ball">
+    <h2>Football Shirt</h2>
+  </div>
 
-<div class="product">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Lionel_Messi_20180626.jpg" alt="Messi Shirt">
-  <h3>Messi Shirt</h3>
-  <p>Price: $12</p>
-</div>
+  <div class="login-box">
+    <h3>➕ Oturum Aç</h3>
+    <input type="text" placeholder="Ad Soyad və ya Gmail">
+  </div>
 
-<div class="product">
-<img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" alt="Ronaldo Shirt">
-  <h3>Ronaldo Shirt</h3>
-  <p>Price: $10</p>
-</div>
+  <div class="privacy" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma olmur. Əgər sifarişiniz gəlməsə, müraciət edin. Ən qısa zamanda əlaqə saxlanılacaq.')">
+    Gizlilik Sözləşməsi
+  </div>
 
-<div class="product">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/f/fb/Kylian_Mbapp%C3%A9_2019.jpg" alt="Mbappe Shirt">
+  <div class="contact">
+    Əlaqə: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a>
+  </div>
 
-  <h3>Mbappé Shirt</h3>
-  <p>Price: $10</p>
-</div>
+  <div class="product-grid">
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" onclick="order('Cristiano Ronaldo')">
+      <p>Cristiano Ronaldo - Bütün Klublar</p>
+      <p>Qiymət: 10$</p>
+    </div>
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Lionel_Messi_20180626.jpg" onclick="order('Lionel Messi')">
+      <p>Lionel Messi - Barça / Miami</p>
+      <p>Qiymət: 10$</p>
+    </div>
+    <div class="product">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Virgil_van_Dijk_2021.jpg" onclick="order('Virgil van Dijk')">
+      <p>Virgil van Dijk - Liverpool</p>
+      <p>Qiymət: 10$</p>
+    </div>
+    <!-- Buraya daha çox futbolçu əlavə edilə bilər -->
+  </div>
 
+  <form action="#" method="POST">
+    <h3>Sifariş Formu</h3>
+    <input type="text" name="name" placeholder="Ad Soyad" required>
+    <input type="text" name="address" placeholder="Yaşadığı Yer" required>
+    <input type="text" name="postcode" placeholder="Poçt Kodu">
+    <input type="text" name="phone" placeholder="Telefon Nömrəsi (İstəyə bağlı)">
+    <textarea name="notes" placeholder="Əlavə qeydlər"></textarea>
+    <button type="submit">Sifariş Ver</button>
+  </form>
 
+  <script>
+    function order(player) {
+      alert(player + " forması üçün sifariş formunu doldurun.");
+    }
+  </script>
 
 </body>
 </html>
-<form action="https://formspree.io/f/YOUR-FORM-ID" method="POST">
-  <h2>Order Form</h2>
-  <input type="text" name="name" placeholder="Your Name" required>
-  <input type="email" name="email" placeholder="Your Email" required>
-  <input type="text" name="phone" placeholder="Phone Number" required>
-  <input type="text" name="address" placeholder="Delivery Address" required>
-  <input type="text" name="postcode" placeholder="Post Code / Region" required>
-
-  <select name="shirt">
-    <option value="Messi">Messi Shirt</option>
-    <option value="Ronaldo">Ronaldo Shirt</option>
-    <option value="Mbappe">Mbappé Shirt</option>
-  </select>
-
-  <select name="size">
-    <option value="S">Size S</option>
-    <option value="M">Size M</option>
-    <option value="L">Size L</option>
-    <option value="XL">Size XL</option>
-  </select>
-
-  <textarea name="notes" placeholder="Extra notes (optional)"></textarea>
-
-  <button type="submit">Submit Order</button>
-</form>
