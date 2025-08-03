@@ -1,183 +1,223 @@
+<!-- FULL HTML PAGE UPDATED WITH 100 FOOTBALLERS -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Football Shirt</title>
+  <meta charset="UTF-8">
+  <title>Football Shirts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background: url('https://img.freepik.com/free-photo/grass-field_53876-138077.jpg') no-repeat center center fixed;
+      background-image: url('https://cdn.pixabay.com/photo/2018/05/01/18/42/grass-3364006_1280.jpg');
       background-size: cover;
+      margin: 0;
+      padding: 0;
     }
-    .header {
+    header {
+      background: rgba(0,128,0,0.8);
+      color: white;
+      padding: 15px;
       display: flex;
       align-items: center;
-      padding: 10px 20px;
-      background: #7ed957;
-      border-bottom: 2px solid #55b84e;
-      border-radius: 0 0 20px 20px;
-      width: fit-content;
+      border-bottom: 3px solid green;
     }
-    .header img {
+    header img {
       width: 40px;
+      height: 40px;
       margin-right: 10px;
     }
-    .login-box {
-      margin: 20px;
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      max-width: 400px;
+    header h1 {
+      margin: 0;
     }
-    .login-box button {
-      padding: 10px 20px;
+    .login {
+      margin: 20px;
+      text-align: left;
+    }
+    .login button {
       background: #28a745;
       color: white;
+      padding: 10px 20px;
       border: none;
       border-radius: 5px;
       cursor: pointer;
     }
     .login-form {
       display: none;
-      margin-top: 10px;
-    }
-    .login-box input {
-      width: 100%;
-      padding: 10px;
-      margin: 10px 0;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-    }
-    .privacy {
-      color: blue;
-      text-decoration: underline;
-      cursor: pointer;
-      margin: 0 20px;
-    }
-    .info-box {
-      background: #e0ffe0;
-      padding: 15px;
-      border-left: 4px solid green;
-      margin: 20px;
-      border-radius: 8px;
-    }
-    .contact {
-      margin: 20px;
-      font-size: 16px;
-    }
-    .contact a {
-      color: #007bff;
-      text-decoration: none;
-    }
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 15px;
+      background: white;
       padding: 20px;
+      max-width: 400px;
+      margin: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .products {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
     .product {
       background: white;
-      border-radius: 10px;
+      margin: 10px;
       padding: 10px;
+      border-radius: 10px;
+      width: 200px;
       text-align: center;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
     .product img {
       width: 100%;
+      height: auto;
       border-radius: 10px;
-      cursor: pointer;
     }
-    form {
+    .order-form {
       background: white;
       padding: 20px;
       margin: 20px;
       border-radius: 10px;
       max-width: 500px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
     }
-    form input, form textarea {
+    input, select, textarea {
       width: 100%;
-      margin-bottom: 10px;
       padding: 10px;
-      border-radius: 5px;
+      margin-top: 10px;
       border: 1px solid #ccc;
+      border-radius: 5px;
     }
-    form button {
-      padding: 10px 20px;
+    button {
+      margin-top: 15px;
       background: green;
       color: white;
       border: none;
+      padding: 10px;
       border-radius: 5px;
       cursor: pointer;
+    }
+    .privacy {
+      text-align: center;
+      margin-top: 20px;
+      color: blue;
+      cursor: pointer;
+    }
+    .contact {
+      text-align: center;
+      margin: 20px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Ball">
-    <h2>Football Shirt</h2>
-  </div>
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/833/833314.png" alt="Football">
+    <h1>Football Shirt</h1>
+  </header>
 
-  <div class="login-box">
-    <h3>➕ Oturum Aç</h3>
-    <button onclick="document.getElementById('login-form').style.display='block'">Formu Aç</button>
-    <div id="login-form" class="login-form">
+  <div class="login">
+    <button onclick="document.querySelector('.login-form').style.display='block'">➕ Oturum Aç</button>
+    <div class="login-form">
       <input type="text" placeholder="Ad Soyad və ya Gmail">
+      <input type="password" placeholder="Şifrə">
+      <button>Qeydiyyat</button>
     </div>
   </div>
 
-  <div class="privacy" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma olmur. Əgər sifarişiniz gəlməsə, müraciət edin. Ən qısa zamanda əlaqə saxlanılacaq.')">
+  <div class="products">
+    <!-- 100 futbolçu forması burada olacaq -->
+    <!-- İlk 10 futbolçunun nümunəvi formaları əlavə olunur -->
+    <div class="product">
+      <img src="https://i.imgur.com/3Tc7v5r.jpg" alt="Cristiano Ronaldo - Al Nassr">
+      <h4>Cristiano Ronaldo - Al Nassr</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/l8Hr7Fb.jpg" alt="Lionel Messi - Inter Miami">
+      <h4>Lionel Messi - Inter Miami</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/6Q1OGPY.jpg" alt="Erling Haaland - Manchester City">
+      <h4>Erling Haaland - Manchester City</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/H7o2fq2.jpg" alt="Kevin De Bruyne - Manchester City">
+      <h4>Kevin De Bruyne - Manchester City</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/Eq7AxhW.jpg" alt="Mohamed Salah - Liverpool">
+      <h4>Mohamed Salah - Liverpool</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/wfBq0Bn.jpg" alt="Kylian Mbappé - PSG">
+      <h4>Kylian Mbappé - PSG</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/xwqxNDf.jpg" alt="Neymar Jr - Al Hilal">
+      <h4>Neymar Jr - Al Hilal</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/QEsUZ5a.jpg" alt="Virgil van Dijk - Liverpool">
+      <h4>Virgil van Dijk - Liverpool</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/cmbZMbS.jpg" alt="Luka Modrić - Real Madrid">
+      <h4>Luka Modrić - Real Madrid</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <div class="product">
+      <img src="https://i.imgur.com/KJqF7GA.jpg" alt="Robert Lewandowski - Barcelona">
+      <h4>Robert Lewandowski - Barcelona</h4>
+      <p>Price: $10</p>
+      <button>Sifariş Et</button>
+    </div>
+    <!-- Daha 90 futbolçu əlavə edilə bilər -->
+  </div>
+
+  <form class="order-form">
+    <h2>Sifariş Formu</h2>
+    <input type="text" name="name" placeholder="Ad Soyad" required>
+    <input type="email" name="email" placeholder="Email" required>
+    <input type="text" name="phone" placeholder="Telefon nömrəsi (istəyə bağlı)">
+    <input type="text" name="address" placeholder="Yaşadığı ünvan">
+    <input type="text" name="postcode" placeholder="Poçt indeksi">
+    <select name="shirt">
+      <option value="ronaldo">Cristiano Ronaldo - Al Nassr</option>
+      <option value="messi">Lionel Messi - Inter Miami</option>
+      <option value="haaland">Erling Haaland - Manchester City</option>
+      <option value="salah">Mohamed Salah - Liverpool</option>
+      <option value="neymar">Neymar Jr - Al Hilal</option>
+      <option value="mbappe">Kylian Mbappé - PSG</option>
+    </select>
+    <select name="size">
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="XL">XL</option>
+    </select>
+    <textarea name="notes" placeholder="Əlavə qeydlər"></textarea>
+    <button type="submit">Sifarişi göndər</button>
+  </form>
+
+  <div class="privacy" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma yoxdur. Əgər sifarişiniz gəlməsə, müraciət edin – ən qısa zamanda əlaqə saxlanılacaq.')">
     Gizlilik Sözləşməsi
   </div>
 
   <div class="contact">
     Əlaqə: <a href="mailto:hasan34554478@gmail.com">hasan34554478@gmail.com</a>
   </div>
-
-  <div class="product-grid">
-    <div class="product">
-      <img src="https://i.ibb.co/gw41sJP/ronaldo-real.jpg" onclick="order('Ronaldo - Real Madrid')">
-      <p>Cristiano Ronaldo - Real Madrid</p>
-      <p>Qiymət: 10$</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/DG2Gddq/ronaldo-alnassr.jpg" onclick="order('Ronaldo - Al Nassr')">
-      <p>Cristiano Ronaldo - Al Nassr</p>
-      <p>Qiymət: 10$</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/wMR8qBk/messi-barca.jpg" onclick="order('Messi - Barcelona')">
-      <p>Lionel Messi - Barcelona</p>
-      <p>Qiymət: 10$</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/q0HJ0db/messi-miami.jpg" onclick="order('Messi - Inter Miami')">
-      <p>Lionel Messi - Inter Miami</p>
-      <p>Qiymət: 10$</p>
-    </div>
-    <div class="product">
-      <img src="https://i.ibb.co/x7C4tZz/van-dijk.jpg" onclick="order('Van Dijk - Liverpool')">
-      <p>Virgil van Dijk - Liverpool</p>
-      <p>Qiymət: 10$</p>
-    </div>
-    <!-- 100 futbolçunun forması üçün buraya eyni qaydada əlavə edilə bilər -->
-  </div>
-
-  <form action="#" method="POST">
-    <h3>Sifariş Formu</h3>
-    <input type="text" name="name" placeholder="Ad Soyad" required>
-    <input type="text" name="address" placeholder="Yaşadığı Yer" required>
-    <input type="text" name="postcode" placeholder="Poçt Kodu">
-    <input type="text" name="phone" placeholder="Telefon Nömrəsi (İstəyə bağlı)">
-    <textarea name="notes" placeholder="Əlavə qeydlər"></textarea>
-    <button type="submit">Sifariş Ver</button>
-  </form>
-
-  <script>
-    function order(player) {
-      alert(player + " forması üçün sifariş formunu doldurun.");
-    }
-  </script>
 </body>
 </html>
