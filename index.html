@@ -8,7 +8,8 @@
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-      background: #d1f5c4;
+      background: url('https://img.freepik.com/free-photo/grass-field_53876-138077.jpg') no-repeat center center fixed;
+      background-size: cover;
     }
     .header {
       display: flex;
@@ -30,6 +31,18 @@
       border-radius: 10px;
       max-width: 400px;
     }
+    .login-box button {
+      padding: 10px 20px;
+      background: #28a745;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .login-form {
+      display: none;
+      margin-top: 10px;
+    }
     .login-box input {
       width: 100%;
       padding: 10px;
@@ -41,6 +54,7 @@
       color: blue;
       text-decoration: underline;
       cursor: pointer;
+      margin: 0 20px;
     }
     .info-box {
       background: #e0ffe0;
@@ -100,7 +114,6 @@
   </style>
 </head>
 <body>
-
   <div class="header">
     <img src="https://cdn-icons-png.flaticon.com/512/1041/1041916.png" alt="Ball">
     <h2>Football Shirt</h2>
@@ -108,7 +121,10 @@
 
   <div class="login-box">
     <h3>➕ Oturum Aç</h3>
-    <input type="text" placeholder="Ad Soyad və ya Gmail">
+    <button onclick="document.getElementById('login-form').style.display='block'">Formu Aç</button>
+    <div id="login-form" class="login-form">
+      <input type="text" placeholder="Ad Soyad və ya Gmail">
+    </div>
   </div>
 
   <div class="privacy" onclick="alert('Bu sayt futbol formaları üçündür. Heç bir aldatma olmur. Əgər sifarişiniz gəlməsə, müraciət edin. Ən qısa zamanda əlaqə saxlanılacaq.')">
@@ -121,21 +137,31 @@
 
   <div class="product-grid">
     <div class="product">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" onclick="order('Cristiano Ronaldo')">
-      <p>Cristiano Ronaldo - Bütün Klublar</p>
+      <img src="https://i.ibb.co/gw41sJP/ronaldo-real.jpg" onclick="order('Ronaldo - Real Madrid')">
+      <p>Cristiano Ronaldo - Real Madrid</p>
       <p>Qiymət: 10$</p>
     </div>
     <div class="product">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Lionel_Messi_20180626.jpg" onclick="order('Lionel Messi')">
-      <p>Lionel Messi - Barça / Miami</p>
+      <img src="https://i.ibb.co/DG2Gddq/ronaldo-alnassr.jpg" onclick="order('Ronaldo - Al Nassr')">
+      <p>Cristiano Ronaldo - Al Nassr</p>
       <p>Qiymət: 10$</p>
     </div>
     <div class="product">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Virgil_van_Dijk_2021.jpg" onclick="order('Virgil van Dijk')">
+      <img src="https://i.ibb.co/wMR8qBk/messi-barca.jpg" onclick="order('Messi - Barcelona')">
+      <p>Lionel Messi - Barcelona</p>
+      <p>Qiymət: 10$</p>
+    </div>
+    <div class="product">
+      <img src="https://i.ibb.co/q0HJ0db/messi-miami.jpg" onclick="order('Messi - Inter Miami')">
+      <p>Lionel Messi - Inter Miami</p>
+      <p>Qiymət: 10$</p>
+    </div>
+    <div class="product">
+      <img src="https://i.ibb.co/x7C4tZz/van-dijk.jpg" onclick="order('Van Dijk - Liverpool')">
       <p>Virgil van Dijk - Liverpool</p>
       <p>Qiymət: 10$</p>
     </div>
-    <!-- Buraya daha çox futbolçu əlavə edilə bilər -->
+    <!-- 100 futbolçunun forması üçün buraya eyni qaydada əlavə edilə bilər -->
   </div>
 
   <form action="#" method="POST">
@@ -153,6 +179,5 @@
       alert(player + " forması üçün sifariş formunu doldurun.");
     }
   </script>
-
 </body>
 </html>
