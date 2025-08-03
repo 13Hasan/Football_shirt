@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Football Shirts</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family: Arial; background: #f2f2f2; padding: 20px; }
+    h1 { text-align: center; }
+    .product { background: white; padding: 15px; margin: 15px auto; max-width: 400px; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    img { width: 100%; border-radius: 10px; }
+    form { background: white; padding: 20px; max-width: 400px; margin: 30px auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+    input, select, textarea { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; }
+    button { background: #007BFF; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; }
+    button:hover { background: #0056b3; }
+  </style>
+</head>
+<body>
+
+<h1>Football Shirts Store</h1>
+
+<div class="product">
+  <img src="https://i.imgur.com/fDyeKcM.jpg" alt="Messi Shirt">
+  <h3>Messi Shirt</h3>
+  <p>Price: $30</p>
+</div>
+
+<div class="product">
+  <img src="https://i.imgur.com/zX5d9vA.jpg" alt="Ronaldo Shirt">
+  <h3>Ronaldo Shirt</h3>
+  <p>Price: $28</p>
+</div>
+
+<div class="product">
+  <img src="https://i.imgur.com/DmF0qQ9.jpg" alt="Mbappe Shirt">
+  <h3>Mbappé Shirt</h3>
+  <p>Price: $25</p>
+</div>
+
+<form action="https://formspree.io/f/your-form-id" method="POST">
+  <h2>Order Form</h2>
+  <input type="text" name="name" placeholder="Your Name" required>
+  <input type="email" name="email" placeholder="Your Email" required>
+  <select name="shirt">
+    <option value="Messi">Messi Shirt</option>
+    <option value="Ronaldo">Ronaldo Shirt</option>
+    <option value="Mbappe">Mbappé Shirt</option>
+  </select>
+  <select name="size">
+    <option value="S">Size S</option>
+    <option value="M">Size M</option>
+    <option value="L">Size L</option>
+    <option value="XL">Size XL</option>
+  </select>
+  <textarea name="notes" placeholder="Extra notes (optional)"></textarea>
+  <button type="submit">Submit Order</button>
+</form>
+
+</body>
+</html>
