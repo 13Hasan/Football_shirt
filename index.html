@@ -388,3 +388,12 @@
     }
   }
 </script>
+<!-- ADMIN PANEL (only visible to logged-in admin) -->
+<div id="admin-panel" style="display:none; padding: 20px; background:white; max-width: 600px; margin: 20px auto; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.3);">
+  <h2>Add New Football Shirt</h2>
+  <form id="admin-form">
+    <input type="text" placeholder="Player Name – Club" id="player-name" required><br>
+    <input type="url" placeholder="Image URL" id="player-img" required><br>
+    <button type="submit">Add Product</button>
+  </form>
+</div>
