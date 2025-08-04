@@ -339,3 +339,52 @@
   </script>
 </body>
 </html>
+<!-- Admin Login Page -->
+<div id="admin-login" style="max-width:400px;margin:30px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.2);">
+  <h2>Admin Login</h2>
+  <input type="email" id="admin-email" placeholder="Email" style="width:100%;margin-bottom:10px;padding:10px">
+  <input type="password" id="admin-password" placeholder="Password" style="width:100%;margin-bottom:10px;padding:10px">
+  <button onclick="adminLogin()" style="padding:10px 20px">Login</button>
+</div>
+
+<!-- Admin Panel -->
+<div id="admin-panel" style="display:none;max-width:500px;margin:30px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 0 10px rgba(0,0,0,0.2);">
+  <h2>Admin Panel</h2>
+  <input type="text" id="new-name" placeholder="Player Name & Club" style="width:100%;margin-bottom:10px;padding:10px">
+  <input type="url" id="new-img" placeholder="Image URL" style="width:100%;margin-bottom:10px;padding:10px">
+  <button onclick="addNewShirt()" style="padding:10px 20px">Add Shirt</button>
+</div>
+
+<script>
+  function adminLogin() {
+    const email = document.getElementById("admin-email").value;
+    const password = document.getElementById("admin-password").value;
+
+    if (email === "admin@example.com" && password === "123456") {
+      document.getElementById("admin-login").style.display = "none";
+      document.getElementById("admin-panel").style.display = "block";
+    } else {
+      alert("Invalid admin credentials!");
+    }
+  }
+
+  function addNewShirt() {
+    const name = document.getElementById("new-name").value;
+    const img = document.getElementById("new-img").value;
+
+    if (name && img) {
+      const div = document.createElement("div");
+      div.className = "product";
+      div.onclick = () => showOrderForm(name);
+      div.innerHTML = `
+        <img src="${img}" alt="${name}">
+        <h3>${name}</h3>
+        <p>Price: $10</p>
+      `;
+      document.getElementById("product-list").appendChild(div);
+      alert("Product added successfully!");
+    } else {
+      alert("Please fill in both fields.");
+    }
+  }
+</script>
